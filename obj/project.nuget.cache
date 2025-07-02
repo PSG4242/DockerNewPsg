@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "0/+X4lvdBKc=",
+  "success": true,
+  "projectFilePath": "C:\\trainee\\DockerNewPsg\\DockerNewPsg.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\H10\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.22.1-preview.1\\microsoft.visualstudio.azure.containers.tools.targets.1.22.1-preview.1.nupkg.sha512"
+  ],
+  "logs": []
+}
