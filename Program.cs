@@ -6,8 +6,8 @@ using MongoDB.Driver;
 // Program.cs
 var builder = WebApplication.CreateBuilder(args);
 
-var mongoUri = Environment.GetEnvironmentVariable("MONGODB_URI");
-var client = new MongoClient(mongoUri);
+//var mongoUri = Environment.GetEnvironmentVariable("MONGODB_URI");
+//var client = new MongoClient(mongoUri);
 
 
 // Configure MongoDB settings
