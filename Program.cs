@@ -1,9 +1,14 @@
 using DockerNewPsg.Models;
 using DockerNewPsg.Services;
+using MongoDB.Driver;
 
 
 // Program.cs
 var builder = WebApplication.CreateBuilder(args);
+
+var mongoUri = Environment.GetEnvironmentVariable("MONGODB_URI");
+var client = new MongoClient(mongoUri);
+
 
 // Configure MongoDB settings
 builder.Services.Configure<MongoDbSettings>(
