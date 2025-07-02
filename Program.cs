@@ -11,8 +11,8 @@ var client = new MongoClient(mongoUri);
 
 
 // Configure MongoDB settings
-//builder.Services.Configure<MongoDbSettings>(
-    //builder.Configuration.GetSection("MongoDbSettings"));
+builder.Services.Configure<MongoDbSettings>(
+    builder.Configuration.GetSection("MongoDbSettings"));
 
 // Register the service
 builder.Services.AddSingleton<UserService>();
