@@ -2,30 +2,24 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy project file and restore dependencies
 COPY ["DockerNewPsg.csproj", "./"]
 RUN dotnet restore "DockerNewPsg.csproj"
-
-# Copy the full source code and build
 COPY . .
-RUN dotnet build "DockerNewPsg.csproj" -c Release -o /app/build
-
-# Stage 2: Publish
-FROM build AS publish
 RUN dotnet publish "DockerNewPsg.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-# Stage 3: Runtime
+# Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 
+# ✅ Install CA certificates (fixes TLS/SSL)
 RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
 
-# ✅ Set environment to Development
-ENV ASPNETCORE_ENVIRONMENT=Development
+COPY --from=build /app/publish .
 
-COPY --from=publish /app/publish .
+# ✅ Optional but helpful
+ENV ASPNETCORE_URLS=http://+:8080
+ENV ASPNETCORE_ENVIRONMENT=Production
 
-# Expose default ASP.NET Core port
 EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "DockerNewPsg.dll"]
