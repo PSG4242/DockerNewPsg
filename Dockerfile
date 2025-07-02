@@ -18,6 +18,8 @@ RUN dotnet publish "DockerNewPsg.csproj" -c Release -o /app/publish /p:UseAppHos
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
+
 # ✅ Set environment to Development
 ENV ASPNETCORE_ENVIRONMENT=Development
 
