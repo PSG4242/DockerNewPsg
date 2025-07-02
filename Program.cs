@@ -1,4 +1,17 @@
+using DockerNewPsg.Models;
+using DockerNewPsg.Services;
+
+
+// Program.cs
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure MongoDB settings
+builder.Services.Configure<MongoDbSettings>(
+    builder.Configuration.GetSection("MongoDbSettings"));
+
+// Register the service
+builder.Services.AddSingleton<UserService>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
