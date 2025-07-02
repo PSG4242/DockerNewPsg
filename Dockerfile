@@ -17,6 +17,10 @@ RUN dotnet publish "DockerNewPsg.csproj" -c Release -o /app/publish /p:UseAppHos
 # Stage 3: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
+
+# ✅ Set environment to Development
+ENV ASPNETCORE_ENVIRONMENT=Development
+
 COPY --from=publish /app/publish .
 
 # Expose default ASP.NET Core port
